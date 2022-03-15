@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>【メルカリ】出品</title>
+</head>
+<body>
+	<header>
+		<form action="/mypageTransition" method="get">
+			<input type="submit" value="もどる">
+		</form>
+		<form action="/logout" method="get">
+			<input type="submit" value="ログアウト">
+		</form>
+	</header>
+	<form action="/listing" method="post">
+		<p>商品名：<input type="text" name="name"></p>
+		<p>画像：後回し</p>
+		<p>値段：<input type="text" name="price"></p>
+		<p>商品説明：<textarea name="introduction" rows="20" cols="125"></textarea></p>
+		<p>カテゴリ：
+			<th:block th:each="category:${categories}">
+				<input type="checkbox" name="categoryies" th:value="${category.id}" th:text="${category.name}">
+			</th:block>
+		</p>
+		<p><input type="submit" value="出品"></p>
+	</form>
+</body>
+</html>

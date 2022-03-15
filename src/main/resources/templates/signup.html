@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>【メルカリ】新規登録</title>
+</head>
+<body>
+	<header>
+		<form action="/loginTransition" method="get">
+			<p><input type="submit" value="もどる"></p>
+		</form>
+	</header>
+	<form action="/signup" method="post">
+		<p>お名前：<input type="text" name="name"></p>
+		<p>ユーザーネーム：<input type="text" name="nickname"></p>
+		<p>パスワード：<input type="password" name="password"></p>
+		<p>メールアドレス：<input type="text" name="mailAddress"></p>
+		<p>電話番号：<input type="text" name="phoneNumber"></p>
+		<p>生年月日：
+		<select name="year">
+			<option th:each="i:${#numbers.sequence(1900,2022)}" th:value="${i}" th:text="${i}" th:selected="${i==year}"></option>
+		</select>年
+		<select name="month">
+			<option th:each="i:${#numbers.sequence(1,12)}" th:value="${i}" th:text="${i}" th:selected="${i==month}"></option>
+		</select>月
+		<select name="day">
+			<option th:each="i:${#numbers.sequence(1,31)}" th:value="${i}" th:text="${i}" th:selected="${i==day}"></option>
+		</select>日</p>
+		<p>プロフィール写真：後回し</p>
+		<p><input type="submit" value="新規登録"></p>
+	</form>
+</body>
+</html>

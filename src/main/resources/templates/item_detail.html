@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>【メルカリ】出品</title>
+</head>
+<body>
+	<header>
+		<form action="/" method="get">
+			<input type="submit" value="もどる">
+		</form>
+		<form action="/logout" method="get">
+			<input type="submit" value="ログアウト">
+		</form>
+	</header>
+	<div id="item_detail">
+		<p><a th:text="${listingUserNickname}"></a><span>さんの出品</span><span>(</span><span th:text="${item.listingDate}"></span><span>)</span></p>
+		<p><h3 th:text="${item.name}"></h3></p>
+		<p><img src=""></p>
+		<p><span th:text="${item.price}"></span><span>円</span></p>
+		<p><span th:text="${item.introduction}"></span></p>
+		<p>
+			<th:block th:each="category:${categories}">
+				<span th:text="${category}"></span><span>　</span>
+			</th:block>
+		</p>
+		<p><span>この商品は</span><span th:text="${item.access}"></span><span>回閲覧されています</span></p>
+		<div th:if="${item.purchaseUserId != 0}">
+			<th:block th:if="${item.purchaseUserId == session.loginUser.id}">
+				<h4>申請中</h4>
+			</th:block>
+			<th:block th:if="${item.purchaseUserId != session.loginUser.id}">
+				<h4>他のアカウントが申請中です</h4>
+			</th:block>
+		</div>
+		<div th:if="${item.purchaseUserId == 0}">
+			<th:block th:if="${session.loginUser.id != item.listingUserId}">
+				<form action="" method="">
+					<input type="submit" value="購入申請">
+				</form>
+			</th:block>
+			<th:block th:if="${session.loginUser.id == item.listingUserId}">
+				<form action="" method="">
+					<input type="submit" value="商品内容を変更する">
+				</form>
+			</th:block>
+		</div>
+	</div>
+	<div id="chat">
+	</div>
+</body>
+</html>

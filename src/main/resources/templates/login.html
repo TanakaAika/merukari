@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>【メルカリ】ログイン</title>
+</head>
+<body>
+	<header>
+		<form action="/" method="get">
+			<p><input type="submit" value="もどる"></p>
+		</form>
+	</header>
+	<span th:text="${message}" style="color:red"></span>
+	<form action="/login" method="post">
+		<p>メールアドレス：<input type="text" name="mailAddress"></p>
+		<p>パスワード：<input type="password" name="password"></p>
+		<p><input type="submit" value="ログイン"></p>
+	</form>
+	<form action="/signupTransition" method="get">
+		<p><input type="submit" value="新規登録"></p>
+	</form>
+</body>
+</html>

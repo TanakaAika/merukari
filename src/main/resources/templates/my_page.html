@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>【メルカリ】マイページ</title>
+</head>
+<body>
+	<header>
+		<form action="/" method="get">
+			<input type="submit" value="もどる">
+		</form>
+		<form action="/logout" method="get">
+			<input type="submit" value="ログアウト">
+		</form>
+	</header>
+	<div id="profile">
+		<img src="">
+		<p th:text="${session.loginUser.nickname}"></p>
+		<p><span>★</span><span th:text="${session.loginUser.level}"></span><span>(</span><span th:text="${session.loginUser.salesTimes}"></span><span>:</span><span th:text="${session.loginUser.purchaseTimes}"></span><span>)</span></p>
+	</div>
+	<div id="menu">
+		<form action="listingTransition" method="get">
+			<input type="submit" value="出品">
+		</form>
+		<form action="" method="get">
+			<input type="submit" value="取引状況">
+		</form>
+		<form action="" method="get">
+			<input type="submit" value="履歴">
+		</form>
+		<form action="" method="get">
+			<input type="submit" value="アカウント情報変更">
+		</form>
+	</div>
+</body>
+</html>

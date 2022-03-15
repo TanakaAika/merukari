@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>【メルカリ】商品一覧</title>
+</head>
+<body>
+	<header>
+		<th:block th:if="${session.loginUser}">
+			<form action="/mypageTransition" method="get">
+				<input type="submit" value="マイページ">
+			</form>
+			<form action="/logout" method="get">
+				<input type="submit" value="ログアウト">
+			</form>
+		</th:block>
+		<th:block th:unless="${session.loginUser}">
+			<form action="/loginTransition" method="get">
+				<input type="submit" value="ログイン">
+			</form>
+		</th:block>
+	<header>
+	<span th:text="${message}" style="color:red"></span>
+	<div id="items">
+		<th:block th:each="item:${items}">
+			<div class="item">
+				<th:block th:if="${session.loginUser}">
+					<form action="/itemDetailTransition">
+						<p><h4 th:text="${item.name}"></h4></p>
+						<img src="">
+						<p><span th:text="${item.price}"></span><span>円</span></p>
+						<p><span th:text="${item.listingDate}"></span></p>
+						<input type="hidden" name="itemId" th:value="${item.id}">
+						<input type="submit" value="詳しくみる"> 
+					</form>
+				</th:block>
+				<th:block th:unless="${session.loginUser}">
+					<form action="/loginMessage">
+						<p><h4 th:text="${item.name}"></h4></p>
+						<img src="">
+						<p><span th:text="${item.price}"></span><span>円</span></p>
+						<p><span th:text="${item.listingDate}"></span></p>
+						<input type="submit" value="詳しくみる"> 
+					</form>
+				</th:block>
+			</div>
+		</th:block>
+	</div>
+</body>
+</html>
